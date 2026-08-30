@@ -1,0 +1,23 @@
+# Swarm Skill 依赖声明（content-publish-ops）
+
+skills: []
+# 本技能自包含，不依赖外部 Skill；如需复用可挂载 dsh-secret-leakage-scan 类插件增强 Phase 4 敏感扫描
+
+tools:
+  - filesystem: 读写素材、内容包、发布稿、台账（本地工作区）
+  - subagent_orchestration: team-lead 调度各角色（对应 Agent / 子代理调度能力）
+  - web: 多渠道发布所需的平台接口与可达性（发布前须用户确认）
+  - search: 竞品对照与合规检索（Phase 4 用）
+
+roles:
+  - team-lead
+  - content-collector
+  - content-organizer
+  - content-creator
+  - content-qa-officer
+  - publish-manager
+
+runtime_notes:
+  - 发布动作属外部动作，务必在用户明确确认后执行
+  - 密钥类凭证走本地保险库，不进对话与日志明文
+  - 跨角色通信必须经 team-lead 中转，禁止角色间直连
